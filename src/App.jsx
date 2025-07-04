@@ -8,7 +8,7 @@ import Configuracoes from "./pages/painel/configuracoes";
 import Extrato from "./pages/painel/extrato";
 import Sinais from "./pages/painel/sinais";
 
-import LandingPage from "./pages/landingPage";
+import LandingPage from "./pages/LandingPage";
 import ComoFunciona from "./pages/ComoFunciona";
 import FAQ from "./pages/FAQ";
 import Terms from "./pages/Terms";
