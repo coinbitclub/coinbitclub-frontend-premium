@@ -1,7 +1,7 @@
-# CoinbitClub Premium - Frontend v2
+# CoinbitClub Frontend Premium
 
-Instale dependências:
-```bash
-npm install
-npm run dev
-```
+## Scripts
+- `npm install`
+- `npm run dev`
+
+Deploy com `vite` e integração via `VITE_API_URL`
