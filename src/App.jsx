@@ -12,11 +12,11 @@ import NotFound from "./pages/NotFound";
 
 import PainelLayout from "./components/PainelLayout";
 import Dashboard from "./pages/painel/Dashboard";
-import Plano from "./pages/painel/plano";
-import Riscos from "./pages/painel/riscos";
-import Configuracoes from "./pages/painel/configuracoes";
-import Extrato from "./pages/painel/extrato";
-import Sinais from "./pages/painel/sinais";
+import Plano from "./pages/painel/Plano";
+import Riscos from "./pages/painel/Riscos";
+import Configuracoes from "./pages/painel/Configuracoes";
+import Extrato from "./pages/painel/Extrato";
+import Sinais from "./pages/painel/Sinais";
 
 export default function App() {
   const isAuthenticated = true; // substituir por lógica real de auth
