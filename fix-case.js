@@ -7,7 +7,7 @@ function toPascal(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// 1) Renomeia todos os .jsx em src/pages (e subpastas) para PascalCase.jsx
+// 1) Walk & rename all .jsx under src/pages to PascalCase.jsx
 function walkAndRename(dir) {
   for (let name of fs.readdirSync(dir)) {
     const full = path.join(dir, name);
@@ -25,17 +25,17 @@ function walkAndRename(dir) {
   }
 }
 
-// 2) Corrige os imports no src/App.jsx para usar PascalCase nos paths
+// 2) Patch src/App.jsx imports to match PascalCase file-names
 function fixImports(appFile) {
   let content = fs.readFileSync(appFile, 'utf8');
 
-  // painel
+  // painel components
   content = content.replace(
     /from\s+["']\.\/pages\/painel\/([a-z]\w*)["']/g,
     (_, m) => `from "./pages/painel/${toPascal(m)}"`
   );
 
-  // demais páginas
+  // other pages
   content = content.replace(
     /from\s+["']\.\/pages\/([a-z]\w*)["']/g,
     (_, m) => `from "./pages/${toPascal(m)}"`
@@ -45,7 +45,7 @@ function fixImports(appFile) {
   console.log(`Imports updated in ${appFile}`);
 }
 
-// Execução
+// run it
 const PAGES    = path.join(__dirname, 'src', 'pages');
 const APP_FILE = path.join(__dirname, 'src', 'App.jsx');
 
