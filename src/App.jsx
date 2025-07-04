@@ -30,7 +30,7 @@ export default function App() {
       <Route path="/como-funciona" element={<ComoFunciona />} />
       <Route path="/faq" element={<FAQ />} />
       <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
-      <Route path="/termos-de-uso" element={<Terms />} />
+      <Route path="/termos"          element={<Terms />} />
 
       {/* Panel routes */}
       <Route path="/panel/dashboard" element={<Dashboard />} />
