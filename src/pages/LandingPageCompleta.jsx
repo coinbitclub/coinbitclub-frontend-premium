@@ -8,7 +8,7 @@ export default function LandingPage() {
       <header className="px-6 py-4 flex justify-between items-center border-b border-zinc-800">
         <Logo />
         <div className="space-x-4 text-sm">
-          <Link to="/como-funciona" className="hover:underline">Como Funciona</Link>
+          <Link to="/como-funciona" className="hover:underline">🔧 Como Funciona</Link>
           <Link to="/login" className="hover:underline">Login</Link>
           <Link to="/register" className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400 font-medium">Cadastrar-se</Link>
         </div>
@@ -54,15 +54,15 @@ export default function LandingPage() {
           <div className="grid gap-4 max-w-2xl mx-auto">
             <details className="bg-zinc-800 rounded p-4">
               <summary className="cursor-pointer font-semibold">Como funciona?</summary>
-              <p className="mt-2 text-sm text-zinc-400">Conectamos seu robô à sua exchange para operar de forma automatizada com IA e parâmetros personalizados.</p>
+              <p className="mt-2 text-sm text-zinc-400">Conectamos seu robô à sua exchange para operar com IA e estratégias validadas, seguindo parâmetros de risco definidos por você.</p>
             </details>
             <details className="bg-zinc-800 rounded p-4">
               <summary className="cursor-pointer font-semibold">É seguro?</summary>
-              <p className="mt-2 text-sm text-zinc-400">Sim. O saldo permanece na sua conta da exchange. Só operamos com chaves sem permissão de saque.</p>
+              <p className="mt-2 text-sm text-zinc-400">Sim. O saldo permanece na sua conta da exchange. Usamos chaves sem permissão de saque.</p>
             </details>
             <details className="bg-zinc-800 rounded p-4">
               <summary className="cursor-pointer font-semibold">Quais são os planos disponíveis?</summary>
-              <p className="mt-2 text-sm text-zinc-400">Temos planos mensais, pré-pagos e internacionais. Acesse os planos no menu.</p>
+              <p className="mt-2 text-sm text-zinc-400">Temos planos mensais com comissão reduzida e plano pré-pago com comissão apenas sobre lucro.</p>
             </details>
           </div>
         </section>
