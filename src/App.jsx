@@ -3,7 +3,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import RequireAuth from './auth/RequireAuth';
 
-// Públicas...
+// Páginas públicas
 import LandingPage         from './pages/LandingPage';
 import Login               from './pages/Login';
 import Register            from './pages/Register';
@@ -12,7 +12,7 @@ import PoliticaPrivacidade from './pages/PoliticaPrivacidade';
 import Terms               from './pages/Terms';
 import NotFound            from './pages/NotFound';
 
-// Área do Usuário
+// Área do Usuário (Painel)
 import PainelLayout        from './pages/painel/PainelLayout';
 import Dashboard           from './pages/painel/Dashboard';
 import Plano               from './pages/painel/Plano';
@@ -21,14 +21,14 @@ import Configuracoes       from './pages/painel/Configuracoes';
 import Extrato             from './pages/painel/Extrato';
 import Sinais              from './pages/painel/Sinais';
 
-// Afiliado
+// Painel de Afiliado
 import AffiliateLayout     from './layout/AffiliateLayout';
 import AffiliateDashboard  from './pages/afiliado/Dashboard';
 import AffiliateExtrato    from './pages/afiliado/Extrato';
 import AffiliateConvite    from './pages/afiliado/Convite';
 import AffiliateSaque      from './pages/afiliado/Saque';
 
-// Admin
+// Painel de Admin
 import AdminLayout         from './layout/AdminLayout';
 import AdminDashboard      from './pages/admin/Dashboard';
 import AdminOperacoes      from './pages/admin/Operacoes';
@@ -41,7 +41,7 @@ import AdminParametros     from './pages/admin/Parametros';
 export default function App() {
   return (
     <Routes>
-      {/* públicas */}
+      {/* Públicas */}
       <Route path="/" element={<LandingPage />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
@@ -49,11 +49,11 @@ export default function App() {
       <Route path="politica-privacidade" element={<PoliticaPrivacidade />} />
       <Route path="termos-de-uso" element={<Terms />} />
 
-      {/* usuário normal (painel) */}
+      {/* Usuário (Painel) */}
       <Route
         path="painel/*"
         element={
-          <RequireAuth roles={[ 'user' ]}>
+          <RequireAuth roles={['user']}>
             <PainelLayout />
           </RequireAuth>
         }
@@ -66,11 +66,11 @@ export default function App() {
         <Route path="sinais" element={<Sinais />} />
       </Route>
 
-      {/* afiliado */}
+      {/* Afiliado */}
       <Route
         path="afiliado/*"
         element={
-          <RequireAuth roles={[ 'affiliate' ]}>
+          <RequireAuth roles={['affiliate']}>
             <AffiliateLayout />
           </RequireAuth>
         }
@@ -81,11 +81,11 @@ export default function App() {
         <Route path="saque" element={<AffiliateSaque />} />
       </Route>
 
-      {/* admin */}
+      {/* Admin */}
       <Route
         path="admin/*"
         element={
-          <RequireAuth roles={[ 'admin' ]}>
+          <RequireAuth roles={['admin']}>
             <AdminLayout />
           </RequireAuth>
         }
@@ -99,7 +99,7 @@ export default function App() {
         <Route path="parametros" element={<AdminParametros />} />
       </Route>
 
-      {/* fallback 404 */}
+      {/* Fallback 404 */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
