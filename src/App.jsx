@@ -1,13 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import Login from "./pages/Login";
+import Terms from "./pages/Terms"; // caso deseje criar a página
+import Login from "./pages/Login"; // se desejar integrar
 import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import Plans from "./pages/Plans";
-import FAQ from "./pages/FAQ";
-import Terms from "./pages/Terms";
-// Você pode adicionar mais páginas conforme forem criadas
 
 export default function App() {
   const isAuthenticated = !!localStorage.getItem("token");
@@ -15,19 +13,12 @@ export default function App() {
   return (
     <Router>
       <Routes>
-        {/* Público */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/planos" element={<Plans />} />
-        <Route path="/faq" element={<FAQ />} />
         <Route path="/termos" element={<Terms />} />
-
-        {/* Privado */}
-        <Route
-          path="/painel"
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />}
-        />
+        <Route path="/painel" element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
