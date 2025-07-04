@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 
 import PainelLayout from "./components/PainelLayout";
-import Dashboard from "./pages/painel/dashboard";
+import Dashboard from "./pages/painel/Dashboard";
 import Plano from "./pages/painel/plano";
 import Riscos from "./pages/painel/riscos";
 import Configuracoes from "./pages/painel/configuracoes";
