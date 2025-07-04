@@ -72,6 +72,6 @@ export default function LandingPage() {
   © 2025 CoinbitClub. Todos os direitos reservados. |{" "}
   <Link to="/termos" className="underline">Termos de Uso</Link> ·{" "}
   <Link to="/politica-de-privacidade" className="underline">Política de Privacidade</Link>
-</footer>
+</footer>`r`n  </div>
 
 
