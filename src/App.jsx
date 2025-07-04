@@ -1,3 +1,4 @@
+// src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
@@ -19,12 +20,13 @@ import Extrato from "./pages/painel/Extrato";
 import Sinais from "./pages/painel/Sinais";
 
 export default function App() {
-  const isAuthenticated = true; // substituir por lógica real de auth
+  // Ajuste para usar seu fluxo real de auth
+  const isAuthenticated = !!localStorage.getItem("token");
 
   return (
-    <Router>
+    <Router basename="/">
       <Routes>
-        {/* Rota pública padrão */}
+        {/* Público */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/como-funciona" element={<ComoFunciona />} />
         <Route path="/faq" element={<FAQ />} />
@@ -33,17 +35,26 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* Rota protegida do painel */}
-        <Route path="/painel" element={isAuthenticated ? <PainelLayout /> : <Navigate to="/login" />}>
+        {/* Protegido: painel */}
+        <Route
+          path="/painel/*"
+          element={
+            isAuthenticated
+              ? <PainelLayout />
+              : <Navigate to="/login" replace />
+          }
+        >
           <Route index element={<Dashboard />} />
           <Route path="plano" element={<Plano />} />
           <Route path="riscos" element={<Riscos />} />
           <Route path="configuracoes" element={<Configuracoes />} />
           <Route path="extrato" element={<Extrato />} />
           <Route path="sinais" element={<Sinais />} />
+          {/* Redireciona rotas inválidas dentro do painel para /painel */}
+          <Route path="*" element={<Navigate to="/painel" replace />} />
         </Route>
 
-        {/* Fallback */}
+        {/* Catch-all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
