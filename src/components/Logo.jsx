@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "@/assets/logo.svg"; // ajuste o caminho conforme sua logo
+import logo from "../assets/logo.svg";
+
 
 export default function Logo() {
   return (
