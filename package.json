@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
++   "fix-case": "node fix-case.js",
     "preview": "vite preview"
   },
   "dependencies": {
