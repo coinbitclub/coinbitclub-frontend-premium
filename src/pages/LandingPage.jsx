@@ -75,3 +75,7 @@ export default function LandingPage() {
 </footer>`r`n  </div>
 
 
+
+  </div>
+);
+}
