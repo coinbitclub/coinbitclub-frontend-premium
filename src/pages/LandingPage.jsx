@@ -68,11 +68,10 @@ export default function LandingPage() {
         </section>
       </main>
 
-      <footer className="text-center text-zinc-500 text-sm py-8 border-t border-zinc-800 mt-16">
-        © 2025 CoinbitClub. Todos os direitos reservados. |{" "}
-             <Link to="/termos" className="underline">Termos de Uso e Política de Privacidade</Link>
-      </footer>
-    </div>
-  );
-}
+  <footer className="text-center text-zinc-500 text-sm py-8 border-t border-zinc-800 mt-16">
+  © 2025 CoinbitClub. Todos os direitos reservados. |{" "}
+  <Link to="/termos" className="underline">Termos de Uso</Link> ·{" "}
+  <Link to="/politica-de-privacidade" className="underline">Política de Privacidade</Link>
+</footer>
+
 
