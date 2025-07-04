@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
 
 export default function LandingPage() {
   return (
     <div className="bg-zinc-900 text-white min-h-screen font-sans">
       <header className="px-6 py-4 flex justify-between items-center border-b border-zinc-800">
-        <h1 className="text-2xl font-bold text-yellow-400">MarketBot</h1>
+        <Logo />
         <div className="space-x-4 text-sm">
+          <Link to="/como-funciona" className="hover:underline">Como Funciona</Link>
           <Link to="/login" className="hover:underline">Login</Link>
           <Link to="/register" className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400 font-medium">Cadastrar-se</Link>
         </div>
@@ -17,7 +19,10 @@ export default function LandingPage() {
           O robô de <span className="text-yellow-400">IA</span> que só <span className="text-yellow-400">lucra junto com você</span>
         </h2>
         <p className="text-zinc-400 text-lg mb-6">Teste grátis 7 dias: seu <span className="text-yellow-300 font-medium">saldo sempre seguro</span> na sua exchange.</p>
-        <Link to="/register" className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold text-lg">Quero Testar Grátis</Link>
+        <div className="flex flex-col gap-4 justify-center items-center mt-4 md:flex-row">
+          <Link to="/register" className="bg-yellow-500 hover:bg-yellow-400 text-black px-6 py-3 rounded-full font-semibold text-lg">Quero Testar Grátis</Link>
+          <Link to="/como-funciona" className="text-yellow-400 underline text-sm">🔧 Como Funciona o MarketBot</Link>
+        </div>
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 text-left">
           <div className="bg-zinc-800 p-6 rounded-xl">
