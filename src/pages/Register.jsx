@@ -10,12 +10,11 @@ export default function Register() {
         <input className="w-full p-2 bg-zinc-700 rounded" placeholder="País" />
         <input className="w-full p-2 bg-zinc-700 rounded" placeholder="Telefone" />
         <input className="w-full p-2 bg-zinc-700 rounded" placeholder="CPF" />
-        <input className="w-full p-2 bg-zinc-700 rounded" placeholder="Chave PIX para reembolso" />
         <input className="w-full p-2 bg-zinc-700 rounded" placeholder="Senha" type="password" />
         <input className="w-full p-2 bg-zinc-700 rounded" placeholder="Confirmar senha" type="password" />
         <label className="flex items-center space-x-2 text-sm">
           <input type="checkbox" className="accent-yellow-500" required />
-          <span>Li e aceito os <a href="/termos" className="underline text-yellow-400">Termos de Uso</a> e a <a href="/termos" className="underline text-yellow-400">Política de Privacidade</a>.</span>
+          <span>Li e aceito os <a href="/termos" className="underline text-yellow-400">Termos de Uso</a></span>
         </label>
         <button type="submit" className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-2 rounded">Cadastrar</button>
       </form>
