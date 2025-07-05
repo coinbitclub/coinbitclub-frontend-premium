@@ -36,7 +36,6 @@ import AdminOperacoes  from './pages/admin/Operacoes';
 import AdminAlertas    from './pages/admin/Alertas';
 import AdminFinanceiro from './pages/admin/Financeiro';
 import AdminUsuarios   from './pages/admin/Usuarios';
-import AdminAfiliados  from './pages/admin/Afiliados';
 import AdminParametros from './pages/admin/Parametros';
 
 export default function App() {
@@ -77,7 +76,7 @@ export default function App() {
           </RequireAuth>
         }
       >
-        <Route index      element={<AffiliateDashboard />} />
+        <Route index       element={<AffiliateDashboard />} />
         <Route path="extrato" element={<AffiliateExtrato />} />
         <Route path="convite" element={<AffiliateConvite />} />
         <Route path="saque"   element={<AffiliateSaque />} />
@@ -97,7 +96,6 @@ export default function App() {
         <Route path="alertas"    element={<AdminAlertas />} />
         <Route path="financeiro" element={<AdminFinanceiro />} />
         <Route path="usuarios"   element={<AdminUsuarios />} />
-        <Route path="afiliados"  element={<AdminAfiliados />} />
         <Route path="parametros" element={<AdminParametros />} />
       </Route>
 
