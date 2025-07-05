@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import RequireAuth from './auth/RequireAuth';
 
 // ========= PÚBLICAS =========
@@ -8,6 +8,7 @@ import LandingPage         from './pages/LandingPage';
 import Login               from './pages/Login';
 import Register            from './pages/Register';
 import FAQ                 from './pages/FAQ';
+import ComoFunciona        from './pages/ComoFunciona';
 import PoliticaPrivacidade from './pages/PoliticaPrivacidade';
 import Terms               from './pages/Terms';
 import NotFound            from './pages/NotFound';
@@ -22,36 +23,33 @@ import Extrato       from './pages/painel/Extrato';
 import Sinais        from './pages/painel/Sinais';
 
 // ======== AFILIADO ========
-import AffiliateLayout from './layout/AffiliateLayout';
-import {
-  AffiliateDashboard,
-  AffiliateExtrato,
-  AffiliateConvite,
-  AffiliateSaque
-} from './pages/afiliado';
+import AffiliateLayout    from './layout/AffiliateLayout';
+import AffiliateDashboard from './pages/afiliado/Dashboard';
+import AffiliateExtrato   from './pages/afiliado/Extrato';
+import AffiliateConvite   from './pages/afiliado/Convite';
+import AffiliateSaque     from './pages/afiliado/Saque';
 
 // ======== ADMIN ========
-import AdminLayout       from './layout/AdminLayout';
-import {
-  AdminDashboard,
-  AdminOperacoes,
-  AdminAlertas,
-  AdminFinanceiro,
-  AdminUsuarios,
-  AdminAfiliados,
-  AdminParametros
-} from './pages/admin';
+import AdminLayout     from './layout/AdminLayout';
+import AdminDashboard  from './pages/admin/Dashboard';
+import AdminOperacoes  from './pages/admin/Operacoes';
+import AdminAlertas    from './pages/admin/Alertas';
+import AdminFinanceiro from './pages/admin/Financeiro';
+import AdminUsuarios   from './pages/admin/Usuarios';
+import AdminAfiliados  from './pages/admin/Afiliados';
+import AdminParametros from './pages/admin/Parametros';
 
 export default function App() {
   return (
     <Routes>
       {/* ============ PÚBLICAS ============ */}
-      <Route path="/"                     element={<LandingPage />} />
-      <Route path="login"                 element={<Login />} />
-      <Route path="register"              element={<Register />} />
-      <Route path="faq"                   element={<FAQ />} />
-      <Route path="politica-privacidade"  element={<PoliticaPrivacidade />} />
-      <Route path="termos-de-uso"         element={<Terms />} />
+      <Route path="/"                    element={<LandingPage />} />
+      <Route path="login"               element={<Login />} />
+      <Route path="register"            element={<Register />} />
+      <Route path="faq"                 element={<FAQ />} />
+      <Route path="como-funciona"       element={<ComoFunciona />} />
+      <Route path="politica-privacidade"element={<PoliticaPrivacidade />} />
+      <Route path="termos-de-uso"       element={<Terms />} />
 
       {/* ============ PAINEL USUÁRIO ============ */}
       <Route
@@ -103,8 +101,8 @@ export default function App() {
         <Route path="parametros" element={<AdminParametros />} />
       </Route>
 
-      {/* ============ 404 ============ */}
-      <Route path="*" element={<NotFound />} />
+      {/* ============ 404 (fallback) ============ */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
