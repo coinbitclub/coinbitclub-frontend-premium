@@ -1,25 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 
 export default function Dashboard() {
-  // Exemplo de dados mock
-  const stats = [
-    { label: 'Saldo Atual',     value: 'R$ 12.345,67' },
-    { label: 'Lucro do Mês',    value: 'R$ 1.234,56' },
-    { label: 'Operações Hoje',  value: 24 },
-    { label: 'Sinais Executados', value: 15 },
-  ];
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    api.get('/user/stats')
+       .then(res => setStats(res.data))
+       .catch(() => {});
+  }, []);
+
+  if (!stats) return <div>Carregando…</div>;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6 text-white">Dashboard</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {stats.map((s) => (
-          <div key={s.label} className="bg-gray-800 p-4 rounded shadow">
-            <p className="text-gray-400">{s.label}</p>
-            <p className="text-xl font-semibold text-white">{s.value}</p>
-          </div>
-        ))}
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <Card title="Saldo pré-pago" value={`R$ ${stats.prepaidBalance}`} />
+        <Card title="Saldo Bybit" value={`$ ${stats.bybitBalance}`} />
+        <Card title="Saldo Binance" value={`$ ${stats.binanceBalance}`} />
+        <Card title="Assertividade" value={`${stats.accuracy}%`} />
+        <Card title="Retorno do dia" value={`${stats.dailyReturn}%`} />
+        <Card title="Retorno histórico" value={`${stats.historicalReturn}%`} />
       </div>
+    </div>
+  );
+}
+
+function Card({ title, value }) {
+  return (
+    <div className="p-4 bg-[#101323] rounded-lg shadow">
+      <p className="text-sm">{title}</p>
+      <p className="text-2xl font-semibold mt-2">{value}</p>
     </div>
   );
 }

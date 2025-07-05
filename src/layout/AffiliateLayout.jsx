@@ -1,51 +1,47 @@
-// src/layout/AffiliateLayout.jsx
 import React from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { FiGrid, FiFileText, FiLink2, FiDollarSign, FiLogOut } from 'react-icons/fi';
+import { NavLink, Outlet } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
 export default function AffiliateLayout() {
-  const nav = useNavigate();
-  const sair = () => {
-    localStorage.clear();
-    nav('/login', { replace: true });
-  };
-
-  const menu = [
-    { to: '',          label: 'Dashboard', icon: <FiGrid /> },
-    { to: 'extrato',   label: 'Extrato',   icon: <FiFileText /> },
-    { to: 'convite',   label: 'Link Convite', icon: <FiLink2 /> },
-    { to: 'saque',     label: 'Saque',     icon: <FiDollarSign /> },
-  ];
+  const { user, logout } = useAuth();
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-gray-200">
-      <aside className="w-64 bg-gray-800 p-4 flex flex-col">
-        <h2 className="text-xl font-bold text-yellow-400 mb-6">Afiliado</h2>
-        <nav className="flex-1 space-y-2">
-          {menu.map(item => (
-            <NavLink
-              key={item.to}
-              end={item.to === ''}
-              to={item.to}
-              className={({ isActive }) =>
-                `flex items-center p-2 rounded hover:bg-gray-700 ${
-                  isActive ? 'bg-gray-700 text-white' : 'text-gray-300'
-                }`
-              }
-            >
-              <span className="mr-2 text-lg">{item.icon}</span>
-              {item.label}
+    <div className="min-h-screen flex bg-[#0a1123] text-white">
+      {/* Sidebar */}
+      <nav className="w-64 p-6 bg-[#101323]">
+        <h2 className="text-2xl font-bold mb-8">Afiliado: {user?.name}</h2>
+        <ul className="space-y-4">
+          <li>
+            <NavLink to="/afiliado" end className="hover:text-cyan-400">
+              Dashboard
             </NavLink>
-          ))}
-        </nav>
+          </li>
+          <li>
+            <NavLink to="/afiliado/extrato" className="hover:text-cyan-400">
+              Extrato de Comissão
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/afiliado/convite" className="hover:text-cyan-400">
+              Meu Link de Convite
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/afiliado/saque" className="hover:text-cyan-400">
+              Solicitar Saque
+            </NavLink>
+          </li>
+        </ul>
         <button
-          onClick={sair}
-          className="mt-4 flex items-center justify-center p-2 bg-red-600 hover:bg-red-500 rounded text-white"
+          onClick={logout}
+          className="mt-10 w-full px-4 py-2 bg-red-600 rounded"
         >
-          <FiLogOut className="mr-1"/> Sair
+          Sair
         </button>
-      </aside>
-      <main className="flex-1 p-6 overflow-auto bg-gray-900">
+      </nav>
+
+      {/* Conteúdo */}
+      <main className="flex-1 p-8 overflow-auto">
         <Outlet />
       </main>
     </div>

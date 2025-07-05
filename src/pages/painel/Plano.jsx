@@ -1,35 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 
 export default function Plano() {
-  const planos = [
-    { name: 'Básico', price: 'R$ 49,90/mês', features: ['1 Robô', 'Suporte e-mail'] },
-    { name: 'Premium', price: 'R$ 99,90/mês', features: ['3 Robôs', 'Suporte 24/7'] },
-  ];
-  const [selected, setSelected] = useState(planos[0].name);
+  const [plan, setPlan] = useState(null);
+
+  useEffect(() => {
+    api.get('/user/plan')
+       .then(res => setPlan(res.data))
+       .catch(() => {});
+  }, []);
+
+  if (!plan) return <div>Carregando…</div>;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6 text-white">Meu Plano</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {planos.map((p) => (
-          <div
-            key={p.name}
-            onClick={() => setSelected(p.name)}
-            className={`p-4 rounded-lg cursor-pointer border ${
-              selected === p.name
-                ? 'border-yellow-400 bg-gray-800'
-                : 'border-gray-700'
-            }`}
-          >
-            <h2 className="text-xl font-semibold text-white">{p.name}</h2>
-            <p className="text-gray-300">{p.price}</p>
-            <ul className="mt-2 text-gray-400 list-disc list-inside">
-              {p.features.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">Meu Plano</h1>
+      <div className="p-6 bg-[#101323] rounded-lg shadow space-y-4">
+        <p><strong>Plano atual:</strong> {plan.name}</p>
+        <p><strong>Próxima cobrança:</strong> {new Date(plan.nextBilling).toLocaleDateString()}</p>
+        <a
+          href="/plans"
+          className="inline-block px-4 py-2 bg-cyan-600 rounded hover:bg-cyan-500"
+        >
+          Alterar Plano
+        </a>
       </div>
     </div>
   );

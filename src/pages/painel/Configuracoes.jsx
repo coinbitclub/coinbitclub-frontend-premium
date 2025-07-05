@@ -1,43 +1,71 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 
 export default function Configuracoes() {
-  const [apiKey, setApiKey] = useState('');
-  const [secret, setSecret] = useState('');
+  const [keys, setKeys] = useState({ bybitKey: '', bybitSecret: '', binanceKey: '', binanceSecret: '' });
+
+  useEffect(() => {
+    api.get('/user/api-keys').then(res => setKeys(res.data));
+  }, []);
+
+  const handleChange = e => {
+    setKeys({ ...keys, [e.target.name]: e.target.value });
+  };
 
   const save = () => {
-    // salva no backend
-    alert('Chaves salvas!');
+    api.put('/user/api-keys', keys);
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6 text-white">Configurações de API</h1>
-      <div className="space-y-4 max-w-md">
-        <div>
-          <label className="block text-gray-300">API Key</label>
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">Configurações de API</h1>
+      <form className="p-6 bg-[#101323] rounded-lg shadow space-y-4">
+        <label>
+          API Key Bybit
           <input
-            type="text"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            className="w-full p-2 mt-1 bg-gray-800 rounded"
+            name="bybitKey"
+            value={keys.bybitKey}
+            onChange={handleChange}
+            className="w-full mt-1 p-2 bg-[#0a1123] border border-[#23263a] rounded"
           />
-        </div>
-        <div>
-          <label className="block text-gray-300">Secret</label>
+        </label>
+        <label>
+          Secret Key Bybit
           <input
-            type="text"
-            value={secret}
-            onChange={(e) => setSecret(e.target.value)}
-            className="w-full p-2 mt-1 bg-gray-800 rounded"
+            name="bybitSecret"
+            type="password"
+            value={keys.bybitSecret}
+            onChange={handleChange}
+            className="w-full mt-1 p-2 bg-[#0a1123] border border-[#23263a] rounded"
           />
-        </div>
+        </label>
+        <label>
+          API Key Binance
+          <input
+            name="binanceKey"
+            value={keys.binanceKey}
+            onChange={handleChange}
+            className="w-full mt-1 p-2 bg-[#0a1123] border border-[#23263a] rounded"
+          />
+        </label>
+        <label>
+          Secret Key Binance
+          <input
+            name="binanceSecret"
+            type="password"
+            value={keys.binanceSecret}
+            onChange={handleChange}
+            className="w-full mt-1 p-2 bg-[#0a1123] border border-[#23263a] rounded"
+          />
+        </label>
         <button
+          type="button"
           onClick={save}
-          className="bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500"
+          className="px-4 py-2 bg-cyan-600 rounded hover:bg-cyan-500"
         >
           Salvar
         </button>
-      </div>
+      </form>
     </div>
   );
 }

@@ -53,7 +53,8 @@ export default function App() {
       <Route path="termos-de-uso"         element={<Terms />} />
 
       {/* ============ PAINEL USUÁRIO ============ */}
-      <Route path="painel/*"
+      <Route
+        path="painel/*"
         element={
           <RequireAuth roles={['user']}>
             <PainelLayout />
@@ -69,7 +70,8 @@ export default function App() {
       </Route>
 
       {/* ============ AFILIADO ============ */}
-      <Route path="afiliado/*"
+      <Route
+        path="afiliado/*"
         element={
           <RequireAuth roles={['affiliate']}>
             <AffiliateLayout />
@@ -83,20 +85,21 @@ export default function App() {
       </Route>
 
       {/* ============ ADMIN ============ */}
-      <Route path="admin/*"
+      <Route
+        path="admin/*"
         element={
           <RequireAuth roles={['admin']}>
             <AdminLayout />
           </RequireAuth>
         }
       >
-        <Route index             element={<AdminDashboard />} />
-        <Route path="operacoes"  element={<AdminOperacoes />} />
-        <Route path="alertas"    element={<AdminAlertas />} />
-        <Route path="financeiro" element={<AdminFinanceiro />} />
-        <Route path="usuarios"   element={<AdminUsuarios />} />
-        <Route path="parametros" element={<AdminParametros />} />
-        <Route path="afiliados"  element={<AdminAfiliados />} />
+        <Route index              element={<AdminDashboard />} />
+        <Route path="operacoes"   element={<AdminOperacoes />} />
+        <Route path="alertas"     element={<AdminAlertas />} />
+        <Route path="financeiro"  element={<AdminFinanceiro />} />
+        <Route path="usuarios"    element={<AdminUsuarios />} />
+        <Route path="parametros"  element={<AdminParametros />} />
+        <Route path="afiliados"   element={<AdminAfiliados />} />
       </Route>
 
       {/* ============ 404 (fallback) ============ */}
