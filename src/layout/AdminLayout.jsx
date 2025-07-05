@@ -1,56 +1,35 @@
-// src/layout/AdminLayout.jsx
 import React from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import {
-  FiGrid, FiClipboard, FiBell, FiDollarSign,
-  FiUsers, FiUserPlus, FiSettings, FiLogOut
-} from 'react-icons/fi';
+import { Outlet, NavLink } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthProvider';
 
 export default function AdminLayout() {
-  const nav = useNavigate();
-  const sair = () => {
-    localStorage.clear();
-    nav('/login', { replace: true });
-  };
-
-  const menu = [
-    { to: 'dashboard', label: 'Dashboard', icon: <FiGrid /> },
-    { to: 'operacoes', label: 'Operações', icon: <FiClipboard /> },
-    { to: 'alertas',   label: 'Alertas & Logs', icon: <FiBell /> },
-    { to: 'financeiro',label: 'Financeiro', icon: <FiDollarSign /> },
-    { to: 'usuarios',  label: 'Usuários', icon: <FiUsers /> },
-    { to: 'afiliados', label: 'Afiliados', icon: <FiUserPlus /> },
-    { to: 'parametros',label: 'Parâmetros', icon: <FiSettings /> },
-  ];
+  const { user, logout } = useAuth();
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-gray-200">
-      <aside className="w-64 bg-gray-800 p-4 flex flex-col">
-        <h2 className="text-xl font-bold text-yellow-400 mb-6">Admin</h2>
-        <nav className="flex-1 space-y-2">
-          {menu.map(item => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                `flex items-center p-2 rounded hover:bg-gray-700 ${
-                  isActive ? 'bg-gray-700 text-white' : 'text-gray-300'
-                }`
-              }
-            >
-              <span className="mr-2 text-lg">{item.icon}</span>
-              {item.label}
-            </NavLink>
-          ))}
-        </nav>
+    <div className="min-h-screen bg-[#0a1123] text-white flex">
+      
+      {/* Sidebar */}
+      <nav className="w-64 p-6 bg-[#101323]">
+        <h2 className="text-2xl font-bold mb-8">Painel Admin</h2>
+        <ul className="space-y-4">
+          <li><NavLink to="/admin" end className="hover:text-cyan-400">Dashboard</NavLink></li>
+          <li><NavLink to="/admin/operations" className="hover:text-cyan-400">Operações</NavLink></li>
+          <li><NavLink to="/admin/alerts" className="hover:text-cyan-400">Alertas/Logs</NavLink></li>
+          <li><NavLink to="/admin/finance" className="hover:text-cyan-400">Financeiro</NavLink></li>
+          <li><NavLink to="/admin/users" className="hover:text-cyan-400">Usuários</NavLink></li>
+          <li><NavLink to="/admin/affiliates" className="hover:text-cyan-400">Afiliados</NavLink></li>
+          <li><NavLink to="/admin/parameters" className="hover:text-cyan-400">Parâmetros</NavLink></li>
+        </ul>
         <button
-          onClick={sair}
-          className="mt-4 flex items-center justify-center p-2 bg-red-600 hover:bg-red-500 rounded text-white"
+          onClick={logout}
+          className="mt-10 px-4 py-2 bg-red-600 rounded w-full"
         >
-          <FiLogOut className="mr-1"/> Sair
+          Sair
         </button>
-      </aside>
-      <main className="flex-1 p-6 overflow-auto bg-gray-900">
+      </nav>
+      
+      {/* Main content */}
+      <main className="flex-1 p-8 overflow-auto">
         <Outlet />
       </main>
     </div>

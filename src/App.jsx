@@ -30,29 +30,30 @@ import AffiliateConvite   from './pages/afiliado/Convite';
 import AffiliateSaque     from './pages/afiliado/Saque';
 
 // ======== ADMIN ========
-import AdminLayout     from './layout/AdminLayout';
-import AdminDashboard  from './pages/admin/Dashboard';
-import AdminOperacoes  from './pages/admin/Operacoes';
-import AdminAlertas    from './pages/admin/Alertas';
-import AdminFinanceiro from './pages/admin/Financeiro';
-import AdminUsuarios   from './pages/admin/Usuarios';
-import AdminParametros from './pages/admin/Parametros';
+import AdminLayout      from './layout/AdminLayout';
+import AdminDashboard   from './pages/admin/Dashboard';
+import AdminOperacoes   from './pages/admin/Operacoes';
+import AdminAlertas     from './pages/admin/Alertas';
+import AdminFinanceiro  from './pages/admin/Financeiro';
+import AdminUsuarios    from './pages/admin/Usuarios';
+import AdminParametros  from './pages/admin/Parametros';
+import AdminAfiliados   from './pages/admin/Affiliates';
 
 export default function App() {
   return (
     <Routes>
+
       {/* ============ PÚBLICAS ============ */}
-      <Route path="/"                    element={<LandingPage />} />
-      <Route path="login"               element={<Login />} />
-      <Route path="register"            element={<Register />} />
-      <Route path="faq"                 element={<FAQ />} />
-      <Route path="como-funciona"       element={<ComoFunciona />} />
-      <Route path="politica-privacidade"element={<PoliticaPrivacidade />} />
-      <Route path="termos-de-uso"       element={<Terms />} />
+      <Route path="/"                      element={<LandingPage />} />
+      <Route path="login"                 element={<Login />} />
+      <Route path="register"              element={<Register />} />
+      <Route path="faq"                   element={<FAQ />} />
+      <Route path="como-funciona"         element={<ComoFunciona />} />
+      <Route path="politica-privacidade"  element={<PoliticaPrivacidade />} />
+      <Route path="termos-de-uso"         element={<Terms />} />
 
       {/* ============ PAINEL USUÁRIO ============ */}
-      <Route
-        path="painel/*"
+      <Route path="painel/*"
         element={
           <RequireAuth roles={['user']}>
             <PainelLayout />
@@ -68,23 +69,21 @@ export default function App() {
       </Route>
 
       {/* ============ AFILIADO ============ */}
-      <Route
-        path="afiliado/*"
+      <Route path="afiliado/*"
         element={
           <RequireAuth roles={['affiliate']}>
             <AffiliateLayout />
           </RequireAuth>
         }
       >
-        <Route index       element={<AffiliateDashboard />} />
-        <Route path="extrato" element={<AffiliateExtrato />} />
-        <Route path="convite" element={<AffiliateConvite />} />
-        <Route path="saque"   element={<AffiliateSaque />} />
+        <Route index           element={<AffiliateDashboard />} />
+        <Route path="extrato"  element={<AffiliateExtrato />} />
+        <Route path="convite"  element={<AffiliateConvite />} />
+        <Route path="saque"    element={<AffiliateSaque />} />
       </Route>
 
       {/* ============ ADMIN ============ */}
-      <Route
-        path="admin/*"
+      <Route path="admin/*"
         element={
           <RequireAuth roles={['admin']}>
             <AdminLayout />
@@ -97,10 +96,12 @@ export default function App() {
         <Route path="financeiro" element={<AdminFinanceiro />} />
         <Route path="usuarios"   element={<AdminUsuarios />} />
         <Route path="parametros" element={<AdminParametros />} />
+        <Route path="afiliados"  element={<AdminAfiliados />} />
       </Route>
 
       {/* ============ 404 (fallback) ============ */}
       <Route path="*" element={<Navigate to="/" replace />} />
+
     </Routes>
   );
 }
